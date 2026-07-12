@@ -5,7 +5,7 @@ locals {
     for k1, v1 in var.storage_accounts : {
       for k2, v2 in coalesce(v1.storage_account_customer_managed_keys, {}) :
       "${k1}/${k2}" => merge(v2, {
-        storage_account_id = module.storage_accounts.storage_accounts["${k1}"].id
+        storage_account_id = module.storage_accounts.storage_accounts_id["${k1}"]
       })
     }
   ]...)
@@ -14,7 +14,7 @@ locals {
     for k1, v1 in var.storage_accounts : {
       for k2, v2 in coalesce(v1.storage_account_local_users, {}) :
       "${k1}/${k2}" => merge(v2, {
-        storage_account_id = module.storage_accounts.storage_accounts["${k1}"].id
+        storage_account_id = module.storage_accounts.storage_accounts_id["${k1}"]
       })
     }
   ]...)
@@ -23,7 +23,7 @@ locals {
     for k1, v1 in var.storage_accounts : {
       for k2, v2 in coalesce(v1.storage_account_network_ruleses, {}) :
       "${k1}/${k2}" => merge(v2, {
-        storage_account_id = module.storage_accounts.storage_accounts["${k1}"].id
+        storage_account_id = module.storage_accounts.storage_accounts_id["${k1}"]
       })
     }
   ]...)
@@ -32,7 +32,7 @@ locals {
     for k1, v1 in var.storage_accounts : {
       for k2, v2 in coalesce(v1.storage_account_queue_propertieses, {}) :
       "${k1}/${k2}" => merge(v2, {
-        storage_account_id = module.storage_accounts.storage_accounts["${k1}"].id
+        storage_account_id = module.storage_accounts.storage_accounts_id["${k1}"]
       })
     }
   ]...)
@@ -41,7 +41,7 @@ locals {
     for k1, v1 in var.storage_accounts : {
       for k2, v2 in coalesce(v1.storage_account_static_websites, {}) :
       "${k1}/${k2}" => merge(v2, {
-        storage_account_id = module.storage_accounts.storage_accounts["${k1}"].id
+        storage_account_id = module.storage_accounts.storage_accounts_id["${k1}"]
       })
     }
   ]...)
@@ -50,7 +50,7 @@ locals {
     for k1, v1 in var.storage_accounts : {
       for k2, v2 in coalesce(v1.storage_blob_inventory_policies, {}) :
       "${k1}/${k2}" => merge(v2, {
-        storage_account_id = module.storage_accounts.storage_accounts["${k1}"].id
+        storage_account_id = module.storage_accounts.storage_accounts_id["${k1}"]
       })
     }
   ]...)
@@ -59,7 +59,7 @@ locals {
     for k1, v1 in var.storage_accounts : {
       for k2, v2 in coalesce(v1.storage_data_lake_gen2_filesystems, {}) :
       "${k1}/${k2}" => merge(v2, {
-        storage_account_id = module.storage_accounts.storage_accounts["${k1}"].id
+        storage_account_id = module.storage_accounts.storage_accounts_id["${k1}"]
       })
     }
   ]...)
@@ -68,7 +68,7 @@ locals {
     for k1, v1 in var.storage_accounts : {
       for k2, v2 in coalesce(v1.storage_data_lake_gen2_paths, {}) :
       "${k1}/${k2}" => merge(v2, {
-        storage_account_id = module.storage_accounts.storage_accounts["${k1}"].id
+        storage_account_id = module.storage_accounts.storage_accounts_id["${k1}"]
       })
     }
   ]...)
@@ -77,7 +77,7 @@ locals {
     for k1, v1 in var.storage_accounts : {
       for k2, v2 in coalesce(v1.storage_encryption_scopes, {}) :
       "${k1}/${k2}" => merge(v2, {
-        storage_account_id = module.storage_accounts.storage_accounts["${k1}"].id
+        storage_account_id = module.storage_accounts.storage_accounts_id["${k1}"]
       })
     }
   ]...)
@@ -86,7 +86,7 @@ locals {
     for k1, v1 in var.storage_accounts : {
       for k2, v2 in coalesce(v1.storage_management_policies, {}) :
       "${k1}/${k2}" => merge(v2, {
-        storage_account_id = module.storage_accounts.storage_accounts["${k1}"].id
+        storage_account_id = module.storage_accounts.storage_accounts_id["${k1}"]
       })
     }
   ]...)
