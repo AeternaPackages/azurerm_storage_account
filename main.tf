@@ -55,6 +55,15 @@ locals {
     }
   ]...)
 
+  storage_containers = merge([
+    for k1, v1 in var.storage_accounts : {
+      for k2, v2 in coalesce(v1.storage_containers, {}) :
+      "${k1}/${k2}" => merge(v2, {
+        storage_account_name = module.storage_accounts.storage_accounts_name["${k1}"]
+      })
+    }
+  ]...)
+
   storage_data_lake_gen2_filesystems = merge([
     for k1, v1 in var.storage_accounts : {
       for k2, v2 in coalesce(v1.storage_data_lake_gen2_filesystems, {}) :
@@ -89,6 +98,44 @@ locals {
         storage_account_id = module.storage_accounts.storage_accounts_id["${k1}"]
       })
     }
+  ]...)
+
+  storage_queues = merge([
+    for k1, v1 in var.storage_accounts : {
+      for k2, v2 in coalesce(v1.storage_queues, {}) :
+      "${k1}/${k2}" => merge(v2, {
+        storage_account_name = module.storage_accounts.storage_accounts_name["${k1}"]
+      })
+    }
+  ]...)
+
+  storage_shares = merge([
+    for k1, v1 in var.storage_accounts : {
+      for k2, v2 in coalesce(v1.storage_shares, {}) :
+      "${k1}/${k2}" => merge(v2, {
+        storage_account_name = module.storage_accounts.storage_accounts_name["${k1}"]
+      })
+    }
+  ]...)
+
+  storage_tables = merge([
+    for k1, v1 in var.storage_accounts : {
+      for k2, v2 in coalesce(v1.storage_tables, {}) :
+      "${k1}/${k2}" => merge(v2, {
+        storage_account_name = module.storage_accounts.storage_accounts_name["${k1}"]
+      })
+    }
+  ]...)
+
+  storage_table_entities = merge([
+    for k1, v1 in var.storage_accounts : merge([
+      for k2, v2 in coalesce(v1.storage_tables, {}) : {
+        for k3, v3 in coalesce(v2.storage_table_entities, {}) :
+        "${k1}/${k2}/${k3}" => merge(v3, {
+          storage_table_id = module.storage_tables.storage_tables_id["${k1}/${k2}"]
+        })
+      }
+    ]...)
   ]...)
 }
 
@@ -133,6 +180,12 @@ module "storage_blob_inventory_policies" {
   depends_on                      = [module.storage_accounts]
 }
 
+module "storage_containers" {
+  source             = "git::https://github.com/AeternaModules/azurerm_storage_container.git?ref=v4.80.0"
+  storage_containers = local.storage_containers
+  depends_on         = [module.storage_accounts]
+}
+
 module "storage_data_lake_gen2_filesystems" {
   source                             = "git::https://github.com/AeternaModules/azurerm_storage_data_lake_gen2_filesystem.git?ref=v4.80.0"
   storage_data_lake_gen2_filesystems = local.storage_data_lake_gen2_filesystems
@@ -155,5 +208,29 @@ module "storage_management_policies" {
   source                      = "git::https://github.com/AeternaModules/azurerm_storage_management_policy.git?ref=v4.80.0"
   storage_management_policies = local.storage_management_policies
   depends_on                  = [module.storage_accounts]
+}
+
+module "storage_queues" {
+  source         = "git::https://github.com/AeternaModules/azurerm_storage_queue.git?ref=v4.80.0"
+  storage_queues = local.storage_queues
+  depends_on     = [module.storage_accounts]
+}
+
+module "storage_shares" {
+  source         = "git::https://github.com/AeternaModules/azurerm_storage_share.git?ref=v4.80.0"
+  storage_shares = local.storage_shares
+  depends_on     = [module.storage_accounts]
+}
+
+module "storage_tables" {
+  source         = "git::https://github.com/AeternaModules/azurerm_storage_table.git?ref=v4.80.0"
+  storage_tables = local.storage_tables
+  depends_on     = [module.storage_accounts]
+}
+
+module "storage_table_entities" {
+  source                 = "git::https://github.com/AeternaModules/azurerm_storage_table_entity.git?ref=v4.80.0"
+  storage_table_entities = local.storage_table_entities
+  depends_on             = [module.storage_tables]
 }
 

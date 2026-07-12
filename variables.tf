@@ -82,6 +82,15 @@ Nested storage_account_static_websites (azurerm_storage_account_static_website):
 Nested storage_blob_inventory_policies (azurerm_storage_blob_inventory_policy):
     Required:
         - rules (block)
+Nested storage_containers (azurerm_storage_container):
+    Required:
+        - name
+    Optional:
+        - container_access_type
+        - default_encryption_scope
+        - encryption_scope_override_enabled
+        - metadata
+        - storage_account_id
 Nested storage_data_lake_gen2_filesystems (azurerm_storage_data_lake_gen2_filesystem):
     Required:
         - name
@@ -110,6 +119,33 @@ Nested storage_encryption_scopes (azurerm_storage_encryption_scope):
 Nested storage_management_policies (azurerm_storage_management_policy):
     Optional:
         - rule (block)
+Nested storage_queues (azurerm_storage_queue):
+    Required:
+        - name
+    Optional:
+        - metadata
+        - storage_account_id
+Nested storage_shares (azurerm_storage_share):
+    Required:
+        - name
+        - quota
+    Optional:
+        - access_tier
+        - enabled_protocol
+        - metadata
+        - storage_account_id
+        - acl (block)
+Nested storage_tables (azurerm_storage_table):
+    Required:
+        - name
+    Optional:
+        - storage_account_id
+        - acl (block)
+    Nested storage_table_entities (azurerm_storage_table_entity):
+        Required:
+            - entity
+            - partition_key
+            - row_key
 EOT
 
   type = map(object({
@@ -353,6 +389,14 @@ EOT
         storage_container_name = string
       }))
     })))
+    storage_containers = optional(map(object({
+      name                              = string
+      container_access_type             = optional(string) # Default: "private"
+      default_encryption_scope          = optional(string)
+      encryption_scope_override_enabled = optional(bool) # Default: true
+      metadata                          = optional(map(string))
+      storage_account_id                = optional(string)
+    })))
     storage_data_lake_gen2_filesystems = optional(map(object({
       name                     = string
       default_encryption_scope = optional(string)
@@ -432,6 +476,44 @@ EOT
         name = string
       })))
     })))
+    storage_queues = optional(map(object({
+      name               = string
+      metadata           = optional(map(string))
+      storage_account_id = optional(string)
+    })))
+    storage_shares = optional(map(object({
+      name               = string
+      quota              = number
+      access_tier        = optional(string)
+      enabled_protocol   = optional(string) # Default: "SMB"
+      metadata           = optional(map(string))
+      storage_account_id = optional(string)
+      acl = optional(list(object({
+        access_policy = optional(list(object({
+          expiry      = optional(string)
+          permissions = string
+          start       = optional(string)
+        })))
+        id = string
+      })))
+    })))
+    storage_tables = optional(map(object({
+      name               = string
+      storage_account_id = optional(string)
+      acl = optional(list(object({
+        access_policy = optional(list(object({
+          expiry      = string
+          permissions = string
+          start       = string
+        })))
+        id = string
+      })))
+      storage_table_entities = optional(map(object({
+        entity        = map(string)
+        partition_key = string
+        row_key       = string
+      })))
+    })))
   }))
 
   validation {
@@ -443,10 +525,15 @@ EOT
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_account_queue_propertieses, {})) : !strcontains(kk, "/")]]),
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_account_static_websites, {})) : !strcontains(kk, "/")]]),
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_blob_inventory_policies, {})) : !strcontains(kk, "/")]]),
+      flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_containers, {})) : !strcontains(kk, "/")]]),
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_data_lake_gen2_filesystems, {})) : !strcontains(kk, "/")]]),
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_data_lake_gen2_paths, {})) : !strcontains(kk, "/")]]),
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_encryption_scopes, {})) : !strcontains(kk, "/")]]),
-      flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_management_policies, {})) : !strcontains(kk, "/")]])
+      flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_management_policies, {})) : !strcontains(kk, "/")]]),
+      flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_queues, {})) : !strcontains(kk, "/")]]),
+      flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_shares, {})) : !strcontains(kk, "/")]]),
+      flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_tables, {})) : !strcontains(kk, "/")]]),
+      flatten([for k0, v0 in var.storage_accounts : [for k1, v1 in coalesce(v0.storage_tables, {}) : [for kk in keys(coalesce(v1.storage_table_entities, {})) : !strcontains(kk, "/")]]])
     ))
     error_message = "Map keys in this package must not contain '/': it is used internally as a nesting-key separator, so a key containing it can silently collide two different nested entries into one. Rename the offending key(s)."
   }
