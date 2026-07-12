@@ -198,10 +198,10 @@ EOT
       bypass         = optional(set(string))
       default_action = string
       ip_rules       = optional(set(string))
-      private_link_access = optional(object({
+      private_link_access = optional(list(object({
         endpoint_resource_id = string
         endpoint_tenant_id   = optional(string)
-      }))
+      })))
       virtual_network_subnet_ids = optional(set(string))
     }))
     queue_properties = optional(object({
@@ -279,7 +279,7 @@ EOT
       home_directory       = optional(string)
       ssh_key_enabled      = optional(bool) # Default: false
       ssh_password_enabled = optional(bool) # Default: false
-      permission_scope = optional(object({
+      permission_scope = optional(list(object({
         permissions = object({
           create = optional(bool) # Default: false
           delete = optional(bool) # Default: false
@@ -289,21 +289,21 @@ EOT
         })
         resource_name = string
         service       = string
-      }))
-      ssh_authorized_key = optional(object({
+      })))
+      ssh_authorized_key = optional(list(object({
         description = optional(string)
         key         = string
-      }))
+      })))
     })))
     storage_account_network_ruleses = optional(map(object({
       default_action             = string
       bypass                     = optional(set(string))
       ip_rules                   = optional(set(string))
       virtual_network_subnet_ids = optional(set(string))
-      private_link_access = optional(object({
+      private_link_access = optional(list(object({
         endpoint_resource_id = string
         endpoint_tenant_id   = optional(string)
-      }))
+      })))
     })))
     storage_account_queue_propertieses = optional(map(object({
       cors_rule = optional(list(object({
@@ -336,7 +336,7 @@ EOT
       index_document     = optional(string)
     })))
     storage_blob_inventory_policies = optional(map(object({
-      rules = object({
+      rules = list(object({
         filter = optional(object({
           blob_types            = set(string)
           exclude_prefixes      = optional(set(string))
@@ -351,7 +351,7 @@ EOT
         schema_fields          = list(string)
         scope                  = string
         storage_container_name = string
-      })
+      }))
     })))
     storage_data_lake_gen2_filesystems = optional(map(object({
       name                     = string
@@ -359,12 +359,12 @@ EOT
       group                    = optional(string)
       owner                    = optional(string)
       properties               = optional(map(string))
-      ace = optional(object({
+      ace = optional(list(object({
         id          = optional(string)
         permissions = string
         scope       = optional(string) # Default: "access"
         type        = string
-      }))
+      })))
     })))
     storage_data_lake_gen2_paths = optional(map(object({
       filesystem_name = string
@@ -372,12 +372,12 @@ EOT
       resource        = string
       group           = optional(string)
       owner           = optional(string)
-      ace = optional(object({
+      ace = optional(list(object({
         id          = optional(string)
         permissions = string
         scope       = optional(string) # Default: "access"
         type        = string
-      }))
+      })))
     })))
     storage_encryption_scopes = optional(map(object({
       name                               = string
@@ -422,11 +422,11 @@ EOT
         enabled = bool
         filters = object({
           blob_types = set(string)
-          match_blob_index_tag = optional(object({
+          match_blob_index_tag = optional(list(object({
             name      = string
             operation = optional(string) # Default: "=="
             value     = string
-          }))
+          })))
           prefix_match = optional(set(string))
         })
         name = string
