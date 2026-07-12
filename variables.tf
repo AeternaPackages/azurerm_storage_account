@@ -61,7 +61,7 @@ Nested storage_account_local_users (azurerm_storage_account_local_user):
         - ssh_password_enabled
         - permission_scope (block)
         - ssh_authorized_key (block)
-Nested storage_account_network_ruleses (azurerm_storage_account_network_rules):
+Nested storage_account_network_rules (azurerm_storage_account_network_rules):
     Required:
         - default_action
     Optional:
@@ -69,7 +69,7 @@ Nested storage_account_network_ruleses (azurerm_storage_account_network_rules):
         - ip_rules
         - virtual_network_subnet_ids
         - private_link_access (block)
-Nested storage_account_queue_propertieses (azurerm_storage_account_queue_properties):
+Nested storage_account_queue_properties (azurerm_storage_account_queue_properties):
     Optional:
         - cors_rule (block)
         - hour_metrics (block)
@@ -331,7 +331,7 @@ EOT
         key         = string
       })))
     })))
-    storage_account_network_ruleses = optional(map(object({
+    storage_account_network_rules = optional(map(object({
       default_action             = string
       bypass                     = optional(set(string))
       ip_rules                   = optional(set(string))
@@ -341,7 +341,7 @@ EOT
         endpoint_tenant_id   = optional(string)
       })))
     })))
-    storage_account_queue_propertieses = optional(map(object({
+    storage_account_queue_properties = optional(map(object({
       cors_rule = optional(list(object({
         allowed_headers    = list(string)
         allowed_methods    = list(string)
@@ -521,8 +521,8 @@ EOT
       [for kk in keys(var.storage_accounts) : !strcontains(kk, "/")],
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_account_customer_managed_keys, {})) : !strcontains(kk, "/")]]),
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_account_local_users, {})) : !strcontains(kk, "/")]]),
-      flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_account_network_ruleses, {})) : !strcontains(kk, "/")]]),
-      flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_account_queue_propertieses, {})) : !strcontains(kk, "/")]]),
+      flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_account_network_rules, {})) : !strcontains(kk, "/")]]),
+      flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_account_queue_properties, {})) : !strcontains(kk, "/")]]),
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_account_static_websites, {})) : !strcontains(kk, "/")]]),
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_blob_inventory_policies, {})) : !strcontains(kk, "/")]]),
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_containers, {})) : !strcontains(kk, "/")]]),

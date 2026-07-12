@@ -19,18 +19,18 @@ locals {
     }
   ]...)
 
-  storage_account_network_ruleses = merge([
+  storage_account_network_rules = merge([
     for k1, v1 in var.storage_accounts : {
-      for k2, v2 in coalesce(v1.storage_account_network_ruleses, {}) :
+      for k2, v2 in coalesce(v1.storage_account_network_rules, {}) :
       "${k1}/${k2}" => merge(v2, {
         storage_account_id = module.storage_accounts.storage_accounts_id["${k1}"]
       })
     }
   ]...)
 
-  storage_account_queue_propertieses = merge([
+  storage_account_queue_properties = merge([
     for k1, v1 in var.storage_accounts : {
-      for k2, v2 in coalesce(v1.storage_account_queue_propertieses, {}) :
+      for k2, v2 in coalesce(v1.storage_account_queue_properties, {}) :
       "${k1}/${k2}" => merge(v2, {
         storage_account_id = module.storage_accounts.storage_accounts_id["${k1}"]
       })
@@ -156,16 +156,16 @@ module "storage_account_local_users" {
   depends_on                  = [module.storage_accounts]
 }
 
-module "storage_account_network_ruleses" {
-  source                          = "git::https://github.com/AeternaModules/azurerm_storage_account_network_rules.git?ref=v4.80.0"
-  storage_account_network_ruleses = local.storage_account_network_ruleses
-  depends_on                      = [module.storage_accounts]
+module "storage_account_network_rules" {
+  source                        = "git::https://github.com/AeternaModules/azurerm_storage_account_network_rules.git?ref=v4.80.0"
+  storage_account_network_rules = local.storage_account_network_rules
+  depends_on                    = [module.storage_accounts]
 }
 
-module "storage_account_queue_propertieses" {
-  source                             = "git::https://github.com/AeternaModules/azurerm_storage_account_queue_properties.git?ref=v4.80.0"
-  storage_account_queue_propertieses = local.storage_account_queue_propertieses
-  depends_on                         = [module.storage_accounts]
+module "storage_account_queue_properties" {
+  source                           = "git::https://github.com/AeternaModules/azurerm_storage_account_queue_properties.git?ref=v4.80.0"
+  storage_account_queue_properties = local.storage_account_queue_properties
+  depends_on                       = [module.storage_accounts]
 }
 
 module "storage_account_static_websites" {

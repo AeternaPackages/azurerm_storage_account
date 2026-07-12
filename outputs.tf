@@ -670,70 +670,70 @@ output "storage_account_local_users_storage_account_id" {
 }
 
 # --- azurerm_storage_account_network_rules ---
-output "storage_account_network_ruleses_id" {
-  description = "Map of id values across all storage_account_network_ruleses, keyed the same as var.storage_account_network_ruleses"
-  value       = module.storage_account_network_ruleses.storage_account_network_ruleses_id
+output "storage_account_network_rules_id" {
+  description = "Map of id values across all storage_account_network_rules, keyed the same as var.storage_account_network_rules"
+  value       = module.storage_account_network_rules.storage_account_network_rules_id
 }
 
-output "storage_account_network_ruleses_bypass" {
-  description = "Map of bypass values across all storage_account_network_ruleses, keyed the same as var.storage_account_network_ruleses"
-  value       = module.storage_account_network_ruleses.storage_account_network_ruleses_bypass
+output "storage_account_network_rules_bypass" {
+  description = "Map of bypass values across all storage_account_network_rules, keyed the same as var.storage_account_network_rules"
+  value       = module.storage_account_network_rules.storage_account_network_rules_bypass
 }
 
-output "storage_account_network_ruleses_default_action" {
-  description = "Map of default_action values across all storage_account_network_ruleses, keyed the same as var.storage_account_network_ruleses"
-  value       = module.storage_account_network_ruleses.storage_account_network_ruleses_default_action
+output "storage_account_network_rules_default_action" {
+  description = "Map of default_action values across all storage_account_network_rules, keyed the same as var.storage_account_network_rules"
+  value       = module.storage_account_network_rules.storage_account_network_rules_default_action
 }
 
-output "storage_account_network_ruleses_ip_rules" {
-  description = "Map of ip_rules values across all storage_account_network_ruleses, keyed the same as var.storage_account_network_ruleses"
-  value       = module.storage_account_network_ruleses.storage_account_network_ruleses_ip_rules
+output "storage_account_network_rules_ip_rules" {
+  description = "Map of ip_rules values across all storage_account_network_rules, keyed the same as var.storage_account_network_rules"
+  value       = module.storage_account_network_rules.storage_account_network_rules_ip_rules
 }
 
-output "storage_account_network_ruleses_private_link_access" {
-  description = "Map of private_link_access values across all storage_account_network_ruleses, keyed the same as var.storage_account_network_ruleses"
-  value       = module.storage_account_network_ruleses.storage_account_network_ruleses_private_link_access
+output "storage_account_network_rules_private_link_access" {
+  description = "Map of private_link_access values across all storage_account_network_rules, keyed the same as var.storage_account_network_rules"
+  value       = module.storage_account_network_rules.storage_account_network_rules_private_link_access
 }
 
-output "storage_account_network_ruleses_storage_account_id" {
-  description = "Map of storage_account_id values across all storage_account_network_ruleses, keyed the same as var.storage_account_network_ruleses"
-  value       = module.storage_account_network_ruleses.storage_account_network_ruleses_storage_account_id
+output "storage_account_network_rules_storage_account_id" {
+  description = "Map of storage_account_id values across all storage_account_network_rules, keyed the same as var.storage_account_network_rules"
+  value       = module.storage_account_network_rules.storage_account_network_rules_storage_account_id
 }
 
-output "storage_account_network_ruleses_virtual_network_subnet_ids" {
-  description = "Map of virtual_network_subnet_ids values across all storage_account_network_ruleses, keyed the same as var.storage_account_network_ruleses"
-  value       = module.storage_account_network_ruleses.storage_account_network_ruleses_virtual_network_subnet_ids
+output "storage_account_network_rules_virtual_network_subnet_ids" {
+  description = "Map of virtual_network_subnet_ids values across all storage_account_network_rules, keyed the same as var.storage_account_network_rules"
+  value       = module.storage_account_network_rules.storage_account_network_rules_virtual_network_subnet_ids
 }
 
 # --- azurerm_storage_account_queue_properties ---
-output "storage_account_queue_propertieses_id" {
-  description = "Map of id values across all storage_account_queue_propertieses, keyed the same as var.storage_account_queue_propertieses"
-  value       = module.storage_account_queue_propertieses.storage_account_queue_propertieses_id
+output "storage_account_queue_properties_id" {
+  description = "Map of id values across all storage_account_queue_properties, keyed the same as var.storage_account_queue_properties"
+  value       = module.storage_account_queue_properties.storage_account_queue_properties_id
 }
 
-output "storage_account_queue_propertieses_cors_rule" {
-  description = "Map of cors_rule values across all storage_account_queue_propertieses, keyed the same as var.storage_account_queue_propertieses"
-  value       = module.storage_account_queue_propertieses.storage_account_queue_propertieses_cors_rule
+output "storage_account_queue_properties_cors_rule" {
+  description = "Map of cors_rule values across all storage_account_queue_properties, keyed the same as var.storage_account_queue_properties"
+  value       = module.storage_account_queue_properties.storage_account_queue_properties_cors_rule
 }
 
-output "storage_account_queue_propertieses_hour_metrics" {
-  description = "Map of hour_metrics values across all storage_account_queue_propertieses, keyed the same as var.storage_account_queue_propertieses"
-  value       = module.storage_account_queue_propertieses.storage_account_queue_propertieses_hour_metrics
+output "storage_account_queue_properties_hour_metrics" {
+  description = "Map of hour_metrics values across all storage_account_queue_properties, keyed the same as var.storage_account_queue_properties"
+  value       = module.storage_account_queue_properties.storage_account_queue_properties_hour_metrics
 }
 
-output "storage_account_queue_propertieses_logging" {
-  description = "Map of logging values across all storage_account_queue_propertieses, keyed the same as var.storage_account_queue_propertieses"
-  value       = module.storage_account_queue_propertieses.storage_account_queue_propertieses_logging
+output "storage_account_queue_properties_logging" {
+  description = "Map of logging values across all storage_account_queue_properties, keyed the same as var.storage_account_queue_properties"
+  value       = module.storage_account_queue_properties.storage_account_queue_properties_logging
 }
 
-output "storage_account_queue_propertieses_minute_metrics" {
-  description = "Map of minute_metrics values across all storage_account_queue_propertieses, keyed the same as var.storage_account_queue_propertieses"
-  value       = module.storage_account_queue_propertieses.storage_account_queue_propertieses_minute_metrics
+output "storage_account_queue_properties_minute_metrics" {
+  description = "Map of minute_metrics values across all storage_account_queue_properties, keyed the same as var.storage_account_queue_properties"
+  value       = module.storage_account_queue_properties.storage_account_queue_properties_minute_metrics
 }
 
-output "storage_account_queue_propertieses_storage_account_id" {
-  description = "Map of storage_account_id values across all storage_account_queue_propertieses, keyed the same as var.storage_account_queue_propertieses"
-  value       = module.storage_account_queue_propertieses.storage_account_queue_propertieses_storage_account_id
+output "storage_account_queue_properties_storage_account_id" {
+  description = "Map of storage_account_id values across all storage_account_queue_properties, keyed the same as var.storage_account_queue_properties"
+  value       = module.storage_account_queue_properties.storage_account_queue_properties_storage_account_id
 }
 
 # --- azurerm_storage_account_static_website ---
