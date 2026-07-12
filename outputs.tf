@@ -1,4 +1,9 @@
 # --- azurerm_storage_account ---
+output "storage_accounts_id" {
+  description = "Map of id values across all storage_accounts, keyed the same as var.storage_accounts"
+  value       = module.storage_accounts.storage_accounts_id
+}
+
 output "storage_accounts_access_tier" {
   description = "Map of access_tier values across all storage_accounts, keyed the same as var.storage_accounts"
   value       = module.storage_accounts.storage_accounts_access_tier
@@ -561,6 +566,11 @@ output "storage_accounts_tags" {
 }
 
 # --- azurerm_storage_account_customer_managed_key ---
+output "storage_account_customer_managed_keys_id" {
+  description = "Map of id values across all storage_account_customer_managed_keys, keyed the same as var.storage_account_customer_managed_keys"
+  value       = module.storage_account_customer_managed_keys.storage_account_customer_managed_keys_id
+}
+
 output "storage_account_customer_managed_keys_federated_identity_client_id" {
   description = "Map of federated_identity_client_id values across all storage_account_customer_managed_keys, keyed the same as var.storage_account_customer_managed_keys"
   value       = module.storage_account_customer_managed_keys.storage_account_customer_managed_keys_federated_identity_client_id
@@ -607,6 +617,11 @@ output "storage_account_customer_managed_keys_user_assigned_identity_id" {
 }
 
 # --- azurerm_storage_account_local_user ---
+output "storage_account_local_users_id" {
+  description = "Map of id values across all storage_account_local_users, keyed the same as var.storage_account_local_users"
+  value       = module.storage_account_local_users.storage_account_local_users_id
+}
+
 output "storage_account_local_users_home_directory" {
   description = "Map of home_directory values across all storage_account_local_users, keyed the same as var.storage_account_local_users"
   value       = module.storage_account_local_users.storage_account_local_users_home_directory
@@ -655,6 +670,11 @@ output "storage_account_local_users_storage_account_id" {
 }
 
 # --- azurerm_storage_account_network_rules ---
+output "storage_account_network_ruleses_id" {
+  description = "Map of id values across all storage_account_network_ruleses, keyed the same as var.storage_account_network_ruleses"
+  value       = module.storage_account_network_ruleses.storage_account_network_ruleses_id
+}
+
 output "storage_account_network_ruleses_bypass" {
   description = "Map of bypass values across all storage_account_network_ruleses, keyed the same as var.storage_account_network_ruleses"
   value       = module.storage_account_network_ruleses.storage_account_network_ruleses_bypass
@@ -686,6 +706,11 @@ output "storage_account_network_ruleses_virtual_network_subnet_ids" {
 }
 
 # --- azurerm_storage_account_queue_properties ---
+output "storage_account_queue_propertieses_id" {
+  description = "Map of id values across all storage_account_queue_propertieses, keyed the same as var.storage_account_queue_propertieses"
+  value       = module.storage_account_queue_propertieses.storage_account_queue_propertieses_id
+}
+
 output "storage_account_queue_propertieses_cors_rule" {
   description = "Map of cors_rule values across all storage_account_queue_propertieses, keyed the same as var.storage_account_queue_propertieses"
   value       = module.storage_account_queue_propertieses.storage_account_queue_propertieses_cors_rule
@@ -712,6 +737,11 @@ output "storage_account_queue_propertieses_storage_account_id" {
 }
 
 # --- azurerm_storage_account_static_website ---
+output "storage_account_static_websites_id" {
+  description = "Map of id values across all storage_account_static_websites, keyed the same as var.storage_account_static_websites"
+  value       = module.storage_account_static_websites.storage_account_static_websites_id
+}
+
 output "storage_account_static_websites_error_404_document" {
   description = "Map of error_404_document values across all storage_account_static_websites, keyed the same as var.storage_account_static_websites"
   value       = module.storage_account_static_websites.storage_account_static_websites_error_404_document
@@ -728,6 +758,11 @@ output "storage_account_static_websites_storage_account_id" {
 }
 
 # --- azurerm_storage_blob_inventory_policy ---
+output "storage_blob_inventory_policies_id" {
+  description = "Map of id values across all storage_blob_inventory_policies, keyed the same as var.storage_blob_inventory_policies"
+  value       = module.storage_blob_inventory_policies.storage_blob_inventory_policies_id
+}
+
 output "storage_blob_inventory_policies_rules" {
   description = "Map of rules values across all storage_blob_inventory_policies, keyed the same as var.storage_blob_inventory_policies"
   value       = module.storage_blob_inventory_policies.storage_blob_inventory_policies_rules
@@ -739,6 +774,11 @@ output "storage_blob_inventory_policies_storage_account_id" {
 }
 
 # --- azurerm_storage_data_lake_gen2_filesystem ---
+output "storage_data_lake_gen2_filesystems_id" {
+  description = "Map of id values across all storage_data_lake_gen2_filesystems, keyed the same as var.storage_data_lake_gen2_filesystems"
+  value       = module.storage_data_lake_gen2_filesystems.storage_data_lake_gen2_filesystems_id
+}
+
 output "storage_data_lake_gen2_filesystems_ace" {
   description = "Map of ace values across all storage_data_lake_gen2_filesystems, keyed the same as var.storage_data_lake_gen2_filesystems"
   value       = module.storage_data_lake_gen2_filesystems.storage_data_lake_gen2_filesystems_ace
@@ -775,6 +815,11 @@ output "storage_data_lake_gen2_filesystems_storage_account_id" {
 }
 
 # --- azurerm_storage_data_lake_gen2_path ---
+output "storage_data_lake_gen2_paths_id" {
+  description = "Map of id values across all storage_data_lake_gen2_paths, keyed the same as var.storage_data_lake_gen2_paths"
+  value       = module.storage_data_lake_gen2_paths.storage_data_lake_gen2_paths_id
+}
+
 output "storage_data_lake_gen2_paths_ace" {
   description = "Map of ace values across all storage_data_lake_gen2_paths, keyed the same as var.storage_data_lake_gen2_paths"
   value       = module.storage_data_lake_gen2_paths.storage_data_lake_gen2_paths_ace
@@ -811,6 +856,11 @@ output "storage_data_lake_gen2_paths_storage_account_id" {
 }
 
 # --- azurerm_storage_encryption_scope ---
+output "storage_encryption_scopes_id" {
+  description = "Map of id values across all storage_encryption_scopes, keyed the same as var.storage_encryption_scopes"
+  value       = module.storage_encryption_scopes.storage_encryption_scopes_id
+}
+
 output "storage_encryption_scopes_infrastructure_encryption_required" {
   description = "Map of infrastructure_encryption_required values across all storage_encryption_scopes, keyed the same as var.storage_encryption_scopes"
   value       = module.storage_encryption_scopes.storage_encryption_scopes_infrastructure_encryption_required
@@ -837,6 +887,11 @@ output "storage_encryption_scopes_storage_account_id" {
 }
 
 # --- azurerm_storage_management_policy ---
+output "storage_management_policies_id" {
+  description = "Map of id values across all storage_management_policies, keyed the same as var.storage_management_policies"
+  value       = module.storage_management_policies.storage_management_policies_id
+}
+
 output "storage_management_policies_rule" {
   description = "Map of rule values across all storage_management_policies, keyed the same as var.storage_management_policies"
   value       = module.storage_management_policies.storage_management_policies_rule
