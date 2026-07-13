@@ -154,27 +154,27 @@ EOT
     location                          = string
     name                              = string
     resource_group_name               = string
-    shared_access_key_enabled         = optional(bool)   # Default: true
-    sftp_enabled                      = optional(bool)   # Default: false
-    queue_encryption_key_type         = optional(string) # Default: "Service"
-    public_network_access_enabled     = optional(bool)   # Default: true
+    shared_access_key_enabled         = optional(bool)
+    sftp_enabled                      = optional(bool)
+    queue_encryption_key_type         = optional(string)
+    public_network_access_enabled     = optional(bool)
     provisioned_billing_model_version = optional(string)
-    nfsv3_enabled                     = optional(bool)   # Default: false
-    min_tls_version                   = optional(string) # Default: "TLS1_2"
-    local_user_enabled                = optional(bool)   # Default: true
+    nfsv3_enabled                     = optional(bool)
+    min_tls_version                   = optional(string)
+    local_user_enabled                = optional(bool)
     large_file_share_enabled          = optional(bool)
-    is_hns_enabled                    = optional(bool)   # Default: false
-    https_traffic_only_enabled        = optional(bool)   # Default: true
-    table_encryption_key_type         = optional(string) # Default: "Service"
+    is_hns_enabled                    = optional(bool)
+    https_traffic_only_enabled        = optional(bool)
+    table_encryption_key_type         = optional(string)
     edge_zone                         = optional(string)
-    dns_endpoint_type                 = optional(string) # Default: "Standard"
-    default_to_oauth_authentication   = optional(bool)   # Default: false
-    cross_tenant_replication_enabled  = optional(bool)   # Default: false
+    dns_endpoint_type                 = optional(string)
+    default_to_oauth_authentication   = optional(bool)
+    cross_tenant_replication_enabled  = optional(bool)
     allowed_copy_scope                = optional(string)
-    allow_nested_items_to_be_public   = optional(bool)   # Default: true
-    account_kind                      = optional(string) # Default: "StorageV2"
+    allow_nested_items_to_be_public   = optional(bool)
+    account_kind                      = optional(string)
     access_tier                       = optional(string)
-    infrastructure_encryption_enabled = optional(bool) # Default: false
+    infrastructure_encryption_enabled = optional(bool)
     tags                              = optional(map(string))
     azure_files_authentication = optional(object({
       active_directory = optional(object({
@@ -185,14 +185,14 @@ EOT
         netbios_domain_name = optional(string)
         storage_sid         = optional(string)
       }))
-      default_share_level_permission = optional(string) # Default: "None"
+      default_share_level_permission = optional(string)
       directory_type                 = string
     }))
     blob_properties = optional(object({
-      change_feed_enabled           = optional(bool) # Default: false
+      change_feed_enabled           = optional(bool)
       change_feed_retention_in_days = optional(number)
       container_delete_retention_policy = optional(object({
-        days = optional(number) # Default: 7
+        days = optional(number)
       }))
       cors_rule = optional(list(object({
         allowed_headers    = list(string)
@@ -203,18 +203,18 @@ EOT
       })))
       default_service_version = optional(string)
       delete_retention_policy = optional(object({
-        days                     = optional(number) # Default: 7
-        permanent_delete_enabled = optional(bool)   # Default: false
+        days                     = optional(number)
+        permanent_delete_enabled = optional(bool)
       }))
-      last_access_time_enabled = optional(bool) # Default: false
+      last_access_time_enabled = optional(bool)
       restore_policy = optional(object({
         days = number
       }))
-      versioning_enabled = optional(bool) # Default: false
+      versioning_enabled = optional(bool)
     }))
     custom_domain = optional(object({
       name          = string
-      use_subdomain = optional(bool) # Default: false
+      use_subdomain = optional(bool)
     }))
     customer_managed_key = optional(object({
       key_vault_key_id          = optional(string)
@@ -269,12 +269,12 @@ EOT
       }))
     }))
     routing = optional(object({
-      choice                      = optional(string) # Default: "MicrosoftRouting"
-      publish_internet_endpoints  = optional(bool)   # Default: false
-      publish_microsoft_endpoints = optional(bool)   # Default: false
+      choice                      = optional(string)
+      publish_internet_endpoints  = optional(bool)
+      publish_microsoft_endpoints = optional(bool)
     }))
     sas_policy = optional(object({
-      expiration_action = optional(string) # Default: "Log"
+      expiration_action = optional(string)
       expiration_period = string
     }))
     share_properties = optional(object({
@@ -286,13 +286,13 @@ EOT
         max_age_in_seconds = number
       })))
       retention_policy = optional(object({
-        days = optional(number) # Default: 7
+        days = optional(number)
       }))
       smb = optional(object({
         authentication_types            = optional(set(string))
         channel_encryption_type         = optional(set(string))
         kerberos_ticket_encryption_type = optional(set(string))
-        multichannel_enabled            = optional(bool) # Default: false
+        multichannel_enabled            = optional(bool)
         versions                        = optional(set(string))
       }))
     }))
@@ -313,15 +313,15 @@ EOT
     storage_account_local_users = optional(map(object({
       name                 = string
       home_directory       = optional(string)
-      ssh_key_enabled      = optional(bool) # Default: false
-      ssh_password_enabled = optional(bool) # Default: false
+      ssh_key_enabled      = optional(bool)
+      ssh_password_enabled = optional(bool)
       permission_scope = optional(list(object({
         permissions = object({
-          create = optional(bool) # Default: false
-          delete = optional(bool) # Default: false
-          list   = optional(bool) # Default: false
-          read   = optional(bool) # Default: false
-          write  = optional(bool) # Default: false
+          create = optional(bool)
+          delete = optional(bool)
+          list   = optional(bool)
+          read   = optional(bool)
+          write  = optional(bool)
         })
         resource_name = string
         service       = string
@@ -350,7 +350,7 @@ EOT
         max_age_in_seconds = number
       })))
       hour_metrics = optional(object({
-        include_apis          = optional(bool) # Default: false
+        include_apis          = optional(bool)
         retention_policy_days = optional(number)
         version               = string
       }))
@@ -362,7 +362,7 @@ EOT
         write                 = bool
       }))
       minute_metrics = optional(object({
-        include_apis          = optional(bool) # Default: false
+        include_apis          = optional(bool)
         retention_policy_days = optional(number)
         version               = string
       }))
@@ -376,9 +376,9 @@ EOT
         filter = optional(object({
           blob_types            = set(string)
           exclude_prefixes      = optional(set(string))
-          include_blob_versions = optional(bool) # Default: false
-          include_deleted       = optional(bool) # Default: false
-          include_snapshots     = optional(bool) # Default: false
+          include_blob_versions = optional(bool)
+          include_deleted       = optional(bool)
+          include_snapshots     = optional(bool)
           prefix_match          = optional(set(string))
         }))
         format                 = string
@@ -391,9 +391,9 @@ EOT
     })))
     storage_containers = optional(map(object({
       name                              = string
-      container_access_type             = optional(string) # Default: "private"
+      container_access_type             = optional(string)
       default_encryption_scope          = optional(string)
-      encryption_scope_override_enabled = optional(bool) # Default: true
+      encryption_scope_override_enabled = optional(bool)
       metadata                          = optional(map(string))
       storage_account_id                = optional(string)
     })))
@@ -406,7 +406,7 @@ EOT
       ace = optional(list(object({
         id          = optional(string)
         permissions = string
-        scope       = optional(string) # Default: "access"
+        scope       = optional(string)
         type        = string
       })))
     })))
@@ -419,7 +419,7 @@ EOT
       ace = optional(list(object({
         id          = optional(string)
         permissions = string
-        scope       = optional(string) # Default: "access"
+        scope       = optional(string)
         type        = string
       })))
     })))
@@ -434,33 +434,33 @@ EOT
         actions = object({
           base_blob = optional(object({
             auto_tier_to_hot_from_cool_enabled                             = optional(bool)
-            delete_after_days_since_creation_greater_than                  = optional(number) # Default: -1
-            delete_after_days_since_last_access_time_greater_than          = optional(number) # Default: -1
-            delete_after_days_since_modification_greater_than              = optional(number) # Default: -1
-            tier_to_archive_after_days_since_creation_greater_than         = optional(number) # Default: -1
-            tier_to_archive_after_days_since_last_access_time_greater_than = optional(number) # Default: -1
-            tier_to_archive_after_days_since_last_tier_change_greater_than = optional(number) # Default: -1
-            tier_to_archive_after_days_since_modification_greater_than     = optional(number) # Default: -1
-            tier_to_cold_after_days_since_creation_greater_than            = optional(number) # Default: -1
-            tier_to_cold_after_days_since_last_access_time_greater_than    = optional(number) # Default: -1
-            tier_to_cold_after_days_since_modification_greater_than        = optional(number) # Default: -1
-            tier_to_cool_after_days_since_creation_greater_than            = optional(number) # Default: -1
-            tier_to_cool_after_days_since_last_access_time_greater_than    = optional(number) # Default: -1
-            tier_to_cool_after_days_since_modification_greater_than        = optional(number) # Default: -1
+            delete_after_days_since_creation_greater_than                  = optional(number)
+            delete_after_days_since_last_access_time_greater_than          = optional(number)
+            delete_after_days_since_modification_greater_than              = optional(number)
+            tier_to_archive_after_days_since_creation_greater_than         = optional(number)
+            tier_to_archive_after_days_since_last_access_time_greater_than = optional(number)
+            tier_to_archive_after_days_since_last_tier_change_greater_than = optional(number)
+            tier_to_archive_after_days_since_modification_greater_than     = optional(number)
+            tier_to_cold_after_days_since_creation_greater_than            = optional(number)
+            tier_to_cold_after_days_since_last_access_time_greater_than    = optional(number)
+            tier_to_cold_after_days_since_modification_greater_than        = optional(number)
+            tier_to_cool_after_days_since_creation_greater_than            = optional(number)
+            tier_to_cool_after_days_since_last_access_time_greater_than    = optional(number)
+            tier_to_cool_after_days_since_modification_greater_than        = optional(number)
           }))
           snapshot = optional(object({
-            change_tier_to_archive_after_days_since_creation               = optional(number) # Default: -1
-            change_tier_to_cool_after_days_since_creation                  = optional(number) # Default: -1
-            delete_after_days_since_creation_greater_than                  = optional(number) # Default: -1
-            tier_to_archive_after_days_since_last_tier_change_greater_than = optional(number) # Default: -1
-            tier_to_cold_after_days_since_creation_greater_than            = optional(number) # Default: -1
+            change_tier_to_archive_after_days_since_creation               = optional(number)
+            change_tier_to_cool_after_days_since_creation                  = optional(number)
+            delete_after_days_since_creation_greater_than                  = optional(number)
+            tier_to_archive_after_days_since_last_tier_change_greater_than = optional(number)
+            tier_to_cold_after_days_since_creation_greater_than            = optional(number)
           }))
           version = optional(object({
-            change_tier_to_archive_after_days_since_creation               = optional(number) # Default: -1
-            change_tier_to_cool_after_days_since_creation                  = optional(number) # Default: -1
-            delete_after_days_since_creation                               = optional(number) # Default: -1
-            tier_to_archive_after_days_since_last_tier_change_greater_than = optional(number) # Default: -1
-            tier_to_cold_after_days_since_creation_greater_than            = optional(number) # Default: -1
+            change_tier_to_archive_after_days_since_creation               = optional(number)
+            change_tier_to_cool_after_days_since_creation                  = optional(number)
+            delete_after_days_since_creation                               = optional(number)
+            tier_to_archive_after_days_since_last_tier_change_greater_than = optional(number)
+            tier_to_cold_after_days_since_creation_greater_than            = optional(number)
           }))
         })
         enabled = bool
@@ -468,7 +468,7 @@ EOT
           blob_types = set(string)
           match_blob_index_tag = optional(list(object({
             name      = string
-            operation = optional(string) # Default: "=="
+            operation = optional(string)
             value     = string
           })))
           prefix_match = optional(set(string))
@@ -485,7 +485,7 @@ EOT
       name               = string
       quota              = number
       access_tier        = optional(string)
-      enabled_protocol   = optional(string) # Default: "SMB"
+      enabled_protocol   = optional(string)
       metadata           = optional(map(string))
       storage_account_id = optional(string)
       acl = optional(list(object({
