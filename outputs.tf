@@ -757,6 +757,37 @@ output "storage_account_static_websites_storage_account_id" {
   value       = module.storage_account_static_websites.storage_account_static_websites_storage_account_id
 }
 
+# --- azurerm_storage_account_table_properties ---
+output "storage_account_table_properties_id" {
+  description = "Map of id values across all storage_account_table_properties, keyed the same as var.storage_account_table_properties"
+  value       = module.storage_account_table_properties.storage_account_table_properties_id
+}
+
+output "storage_account_table_properties_cors_rule" {
+  description = "Map of cors_rule values across all storage_account_table_properties, keyed the same as var.storage_account_table_properties"
+  value       = module.storage_account_table_properties.storage_account_table_properties_cors_rule
+}
+
+output "storage_account_table_properties_hour_metrics" {
+  description = "Map of hour_metrics values across all storage_account_table_properties, keyed the same as var.storage_account_table_properties"
+  value       = module.storage_account_table_properties.storage_account_table_properties_hour_metrics
+}
+
+output "storage_account_table_properties_logging" {
+  description = "Map of logging values across all storage_account_table_properties, keyed the same as var.storage_account_table_properties"
+  value       = module.storage_account_table_properties.storage_account_table_properties_logging
+}
+
+output "storage_account_table_properties_minute_metrics" {
+  description = "Map of minute_metrics values across all storage_account_table_properties, keyed the same as var.storage_account_table_properties"
+  value       = module.storage_account_table_properties.storage_account_table_properties_minute_metrics
+}
+
+output "storage_account_table_properties_storage_account_id" {
+  description = "Map of storage_account_id values across all storage_account_table_properties, keyed the same as var.storage_account_table_properties"
+  value       = module.storage_account_table_properties.storage_account_table_properties_storage_account_id
+}
+
 # --- azurerm_storage_blob_inventory_policy ---
 output "storage_blob_inventory_policies_id" {
   description = "Map of id values across all storage_blob_inventory_policies, keyed the same as var.storage_blob_inventory_policies"

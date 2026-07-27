@@ -79,6 +79,12 @@ Nested storage_account_static_websites (azurerm_storage_account_static_website):
     Optional:
         - error_404_document
         - index_document
+Nested storage_account_table_properties (azurerm_storage_account_table_properties):
+    Optional:
+        - cors_rule (block)
+        - hour_metrics (block)
+        - logging (block)
+        - minute_metrics (block)
 Nested storage_blob_inventory_policies (azurerm_storage_blob_inventory_policy):
     Required:
         - rules (block)
@@ -371,6 +377,32 @@ EOT
       error_404_document = optional(string)
       index_document     = optional(string)
     })))
+    storage_account_table_properties = optional(map(object({
+      cors_rule = optional(list(object({
+        allowed_headers    = list(string)
+        allowed_methods    = list(string)
+        allowed_origins    = list(string)
+        exposed_headers    = list(string)
+        max_age_in_seconds = number
+      })))
+      hour_metrics = optional(object({
+        include_apis          = optional(bool)
+        retention_policy_days = optional(number)
+        version               = string
+      }))
+      logging = optional(object({
+        delete                = bool
+        read                  = bool
+        retention_policy_days = optional(number)
+        version               = string
+        write                 = bool
+      }))
+      minute_metrics = optional(object({
+        include_apis          = optional(bool)
+        retention_policy_days = optional(number)
+        version               = string
+      }))
+    })))
     storage_blob_inventory_policies = optional(map(object({
       rules = list(object({
         filter = optional(object({
@@ -524,6 +556,7 @@ EOT
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_account_network_rules, {})) : !strcontains(kk, "/")]]),
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_account_queue_properties, {})) : !strcontains(kk, "/")]]),
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_account_static_websites, {})) : !strcontains(kk, "/")]]),
+      flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_account_table_properties, {})) : !strcontains(kk, "/")]]),
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_blob_inventory_policies, {})) : !strcontains(kk, "/")]]),
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_containers, {})) : !strcontains(kk, "/")]]),
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_data_lake_gen2_filesystems, {})) : !strcontains(kk, "/")]]),
