@@ -37,20 +37,14 @@ Optional:
     - identity (block)
     - immutability_policy (block)
     - network_rules (block)
-    - queue_properties (block)
     - routing (block)
     - sas_policy (block)
     - share_properties (block)
-    - static_website (block)
 Nested storage_account_customer_managed_keys (azurerm_storage_account_customer_managed_key):
+    Required:
+        - key_vault_key_id
     Optional:
         - federated_identity_client_id
-        - key_name
-        - key_vault_id
-        - key_vault_key_id
-        - key_vault_uri
-        - key_version
-        - managed_hsm_key_id
         - user_assigned_identity_id
 Nested storage_account_local_users (azurerm_storage_account_local_user):
     Required:
@@ -96,7 +90,22 @@ Nested storage_containers (azurerm_storage_container):
         - default_encryption_scope
         - encryption_scope_override_enabled
         - metadata
-        - storage_account_id
+    Nested storage_blobs (azurerm_storage_blob):
+        Required:
+            - name
+            - type
+        Optional:
+            - access_tier
+            - cache_control
+            - content_md5
+            - content_type
+            - encryption_scope
+            - metadata
+            - parallelism
+            - size
+            - source
+            - source_content
+            - source_uri
 Nested storage_data_lake_gen2_filesystems (azurerm_storage_data_lake_gen2_filesystem):
     Required:
         - name
@@ -130,7 +139,6 @@ Nested storage_queues (azurerm_storage_queue):
         - name
     Optional:
         - metadata
-        - storage_account_id
 Nested storage_shares (azurerm_storage_share):
     Required:
         - name
@@ -139,13 +147,11 @@ Nested storage_shares (azurerm_storage_share):
         - access_tier
         - enabled_protocol
         - metadata
-        - storage_account_id
         - acl (block)
 Nested storage_tables (azurerm_storage_table):
     Required:
         - name
     Optional:
-        - storage_account_id
         - acl (block)
     Nested storage_table_entities (azurerm_storage_table_entity):
         Required:
@@ -223,8 +229,7 @@ EOT
       use_subdomain = optional(bool)
     }))
     customer_managed_key = optional(object({
-      key_vault_key_id          = optional(string)
-      managed_hsm_key_id        = optional(string)
+      key_vault_key_id          = string
       user_assigned_identity_id = string
     }))
     identity = optional(object({
@@ -245,34 +250,6 @@ EOT
         endpoint_tenant_id   = optional(string)
       })))
       virtual_network_subnet_ids = optional(set(string))
-    }))
-    queue_properties = optional(object({
-      cors_rule = optional(list(object({
-        allowed_headers    = list(string)
-        allowed_methods    = list(string)
-        allowed_origins    = list(string)
-        exposed_headers    = list(string)
-        max_age_in_seconds = number
-      })))
-      hour_metrics = optional(object({
-        enabled               = bool
-        include_apis          = optional(bool)
-        retention_policy_days = optional(number)
-        version               = string
-      }))
-      logging = optional(object({
-        delete                = bool
-        read                  = bool
-        retention_policy_days = optional(number)
-        version               = string
-        write                 = bool
-      }))
-      minute_metrics = optional(object({
-        enabled               = bool
-        include_apis          = optional(bool)
-        retention_policy_days = optional(number)
-        version               = string
-      }))
     }))
     routing = optional(object({
       choice                      = optional(string)
@@ -302,18 +279,9 @@ EOT
         versions                        = optional(set(string))
       }))
     }))
-    static_website = optional(object({
-      error_404_document = optional(string)
-      index_document     = optional(string)
-    }))
     storage_account_customer_managed_keys = optional(map(object({
+      key_vault_key_id             = string
       federated_identity_client_id = optional(string)
-      key_name                     = optional(string)
-      key_vault_id                 = optional(string)
-      key_vault_key_id             = optional(string)
-      key_vault_uri                = optional(string)
-      key_version                  = optional(string)
-      managed_hsm_key_id           = optional(string)
       user_assigned_identity_id    = optional(string)
     })))
     storage_account_local_users = optional(map(object({
@@ -427,7 +395,21 @@ EOT
       default_encryption_scope          = optional(string)
       encryption_scope_override_enabled = optional(bool)
       metadata                          = optional(map(string))
-      storage_account_id                = optional(string)
+      storage_blobs = optional(map(object({
+        name             = string
+        type             = string
+        access_tier      = optional(string)
+        cache_control    = optional(string)
+        content_md5      = optional(string)
+        content_type     = optional(string)
+        encryption_scope = optional(string)
+        metadata         = optional(map(string))
+        parallelism      = optional(number)
+        size             = optional(number)
+        source           = optional(string)
+        source_content   = optional(string)
+        source_uri       = optional(string)
+      })))
     })))
     storage_data_lake_gen2_filesystems = optional(map(object({
       name                     = string
@@ -509,17 +491,15 @@ EOT
       })))
     })))
     storage_queues = optional(map(object({
-      name               = string
-      metadata           = optional(map(string))
-      storage_account_id = optional(string)
+      name     = string
+      metadata = optional(map(string))
     })))
     storage_shares = optional(map(object({
-      name               = string
-      quota              = number
-      access_tier        = optional(string)
-      enabled_protocol   = optional(string)
-      metadata           = optional(map(string))
-      storage_account_id = optional(string)
+      name             = string
+      quota            = number
+      access_tier      = optional(string)
+      enabled_protocol = optional(string)
+      metadata         = optional(map(string))
       acl = optional(list(object({
         access_policy = optional(list(object({
           expiry      = optional(string)
@@ -530,8 +510,7 @@ EOT
       })))
     })))
     storage_tables = optional(map(object({
-      name               = string
-      storage_account_id = optional(string)
+      name = string
       acl = optional(list(object({
         access_policy = optional(list(object({
           expiry      = string
@@ -559,6 +538,7 @@ EOT
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_account_table_properties, {})) : !strcontains(kk, "/")]]),
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_blob_inventory_policies, {})) : !strcontains(kk, "/")]]),
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_containers, {})) : !strcontains(kk, "/")]]),
+      flatten([for k0, v0 in var.storage_accounts : [for k1, v1 in coalesce(v0.storage_containers, {}) : [for kk in keys(coalesce(v1.storage_blobs, {})) : !strcontains(kk, "/")]]]),
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_data_lake_gen2_filesystems, {})) : !strcontains(kk, "/")]]),
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_data_lake_gen2_paths, {})) : !strcontains(kk, "/")]]),
       flatten([for k0, v0 in var.storage_accounts : [for kk in keys(coalesce(v0.storage_encryption_scopes, {})) : !strcontains(kk, "/")]]),

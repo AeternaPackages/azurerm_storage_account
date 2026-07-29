@@ -332,11 +332,6 @@ output "storage_accounts_queue_encryption_key_type" {
   value       = module.storage_accounts.storage_accounts_queue_encryption_key_type
 }
 
-output "storage_accounts_queue_properties" {
-  description = "Map of queue_properties values across all storage_accounts, keyed the same as var.storage_accounts"
-  value       = module.storage_accounts.storage_accounts_queue_properties
-}
-
 output "storage_accounts_resource_group_name" {
   description = "Map of resource_group_name values across all storage_accounts, keyed the same as var.storage_accounts"
   value       = module.storage_accounts.storage_accounts_resource_group_name
@@ -550,11 +545,6 @@ output "storage_accounts_shared_access_key_enabled" {
   value       = module.storage_accounts.storage_accounts_shared_access_key_enabled
 }
 
-output "storage_accounts_static_website" {
-  description = "Map of static_website values across all storage_accounts, keyed the same as var.storage_accounts"
-  value       = module.storage_accounts.storage_accounts_static_website
-}
-
 output "storage_accounts_table_encryption_key_type" {
   description = "Map of table_encryption_key_type values across all storage_accounts, keyed the same as var.storage_accounts"
   value       = module.storage_accounts.storage_accounts_table_encryption_key_type
@@ -576,34 +566,9 @@ output "storage_account_customer_managed_keys_federated_identity_client_id" {
   value       = module.storage_account_customer_managed_keys.storage_account_customer_managed_keys_federated_identity_client_id
 }
 
-output "storage_account_customer_managed_keys_key_name" {
-  description = "Map of key_name values across all storage_account_customer_managed_keys, keyed the same as var.storage_account_customer_managed_keys"
-  value       = module.storage_account_customer_managed_keys.storage_account_customer_managed_keys_key_name
-}
-
-output "storage_account_customer_managed_keys_key_vault_id" {
-  description = "Map of key_vault_id values across all storage_account_customer_managed_keys, keyed the same as var.storage_account_customer_managed_keys"
-  value       = module.storage_account_customer_managed_keys.storage_account_customer_managed_keys_key_vault_id
-}
-
 output "storage_account_customer_managed_keys_key_vault_key_id" {
   description = "Map of key_vault_key_id values across all storage_account_customer_managed_keys, keyed the same as var.storage_account_customer_managed_keys"
   value       = module.storage_account_customer_managed_keys.storage_account_customer_managed_keys_key_vault_key_id
-}
-
-output "storage_account_customer_managed_keys_key_vault_uri" {
-  description = "Map of key_vault_uri values across all storage_account_customer_managed_keys, keyed the same as var.storage_account_customer_managed_keys"
-  value       = module.storage_account_customer_managed_keys.storage_account_customer_managed_keys_key_vault_uri
-}
-
-output "storage_account_customer_managed_keys_key_version" {
-  description = "Map of key_version values across all storage_account_customer_managed_keys, keyed the same as var.storage_account_customer_managed_keys"
-  value       = module.storage_account_customer_managed_keys.storage_account_customer_managed_keys_key_version
-}
-
-output "storage_account_customer_managed_keys_managed_hsm_key_id" {
-  description = "Map of managed_hsm_key_id values across all storage_account_customer_managed_keys, keyed the same as var.storage_account_customer_managed_keys"
-  value       = module.storage_account_customer_managed_keys.storage_account_customer_managed_keys_managed_hsm_key_id
 }
 
 output "storage_account_customer_managed_keys_storage_account_id" {
@@ -845,19 +810,9 @@ output "storage_containers_name" {
   value       = module.storage_containers.storage_containers_name
 }
 
-output "storage_containers_resource_manager_id" {
-  description = "Map of resource_manager_id values across all storage_containers, keyed the same as var.storage_containers"
-  value       = module.storage_containers.storage_containers_resource_manager_id
-}
-
 output "storage_containers_storage_account_id" {
   description = "Map of storage_account_id values across all storage_containers, keyed the same as var.storage_containers"
   value       = module.storage_containers.storage_containers_storage_account_id
-}
-
-output "storage_containers_storage_account_name" {
-  description = "Map of storage_account_name values across all storage_containers, keyed the same as var.storage_containers"
-  value       = module.storage_containers.storage_containers_storage_account_name
 }
 
 output "storage_containers_url" {
@@ -1010,19 +965,9 @@ output "storage_queues_name" {
   value       = module.storage_queues.storage_queues_name
 }
 
-output "storage_queues_resource_manager_id" {
-  description = "Map of resource_manager_id values across all storage_queues, keyed the same as var.storage_queues"
-  value       = module.storage_queues.storage_queues_resource_manager_id
-}
-
 output "storage_queues_storage_account_id" {
   description = "Map of storage_account_id values across all storage_queues, keyed the same as var.storage_queues"
   value       = module.storage_queues.storage_queues_storage_account_id
-}
-
-output "storage_queues_storage_account_name" {
-  description = "Map of storage_account_name values across all storage_queues, keyed the same as var.storage_queues"
-  value       = module.storage_queues.storage_queues_storage_account_name
 }
 
 output "storage_queues_url" {
@@ -1071,19 +1016,9 @@ output "storage_shares_rbac_scope_id" {
   value       = module.storage_shares.storage_shares_rbac_scope_id
 }
 
-output "storage_shares_resource_manager_id" {
-  description = "Map of resource_manager_id values across all storage_shares, keyed the same as var.storage_shares"
-  value       = module.storage_shares.storage_shares_resource_manager_id
-}
-
 output "storage_shares_storage_account_id" {
   description = "Map of storage_account_id values across all storage_shares, keyed the same as var.storage_shares"
   value       = module.storage_shares.storage_shares_storage_account_id
-}
-
-output "storage_shares_storage_account_name" {
-  description = "Map of storage_account_name values across all storage_shares, keyed the same as var.storage_shares"
-  value       = module.storage_shares.storage_shares_storage_account_name
 }
 
 output "storage_shares_url" {
@@ -1117,9 +1052,85 @@ output "storage_tables_storage_account_id" {
   value       = module.storage_tables.storage_tables_storage_account_id
 }
 
-output "storage_tables_storage_account_name" {
-  description = "Map of storage_account_name values across all storage_tables, keyed the same as var.storage_tables"
-  value       = module.storage_tables.storage_tables_storage_account_name
+# --- azurerm_storage_blob ---
+output "storage_blobs_id" {
+  description = "Map of id values across all storage_blobs, keyed the same as var.storage_blobs"
+  value       = module.storage_blobs.storage_blobs_id
+}
+
+output "storage_blobs_access_tier" {
+  description = "Map of access_tier values across all storage_blobs, keyed the same as var.storage_blobs"
+  value       = module.storage_blobs.storage_blobs_access_tier
+}
+
+output "storage_blobs_cache_control" {
+  description = "Map of cache_control values across all storage_blobs, keyed the same as var.storage_blobs"
+  value       = module.storage_blobs.storage_blobs_cache_control
+}
+
+output "storage_blobs_content_md5" {
+  description = "Map of content_md5 values across all storage_blobs, keyed the same as var.storage_blobs"
+  value       = module.storage_blobs.storage_blobs_content_md5
+}
+
+output "storage_blobs_content_type" {
+  description = "Map of content_type values across all storage_blobs, keyed the same as var.storage_blobs"
+  value       = module.storage_blobs.storage_blobs_content_type
+}
+
+output "storage_blobs_encryption_scope" {
+  description = "Map of encryption_scope values across all storage_blobs, keyed the same as var.storage_blobs"
+  value       = module.storage_blobs.storage_blobs_encryption_scope
+}
+
+output "storage_blobs_metadata" {
+  description = "Map of metadata values across all storage_blobs, keyed the same as var.storage_blobs"
+  value       = module.storage_blobs.storage_blobs_metadata
+}
+
+output "storage_blobs_name" {
+  description = "Map of name values across all storage_blobs, keyed the same as var.storage_blobs"
+  value       = module.storage_blobs.storage_blobs_name
+}
+
+output "storage_blobs_parallelism" {
+  description = "Map of parallelism values across all storage_blobs, keyed the same as var.storage_blobs"
+  value       = module.storage_blobs.storage_blobs_parallelism
+}
+
+output "storage_blobs_size" {
+  description = "Map of size values across all storage_blobs, keyed the same as var.storage_blobs"
+  value       = module.storage_blobs.storage_blobs_size
+}
+
+output "storage_blobs_source" {
+  description = "Map of source values across all storage_blobs, keyed the same as var.storage_blobs"
+  value       = module.storage_blobs.storage_blobs_source
+}
+
+output "storage_blobs_source_content" {
+  description = "Map of source_content values across all storage_blobs, keyed the same as var.storage_blobs"
+  value       = module.storage_blobs.storage_blobs_source_content
+}
+
+output "storage_blobs_source_uri" {
+  description = "Map of source_uri values across all storage_blobs, keyed the same as var.storage_blobs"
+  value       = module.storage_blobs.storage_blobs_source_uri
+}
+
+output "storage_blobs_storage_container_id" {
+  description = "Map of storage_container_id values across all storage_blobs, keyed the same as var.storage_blobs"
+  value       = module.storage_blobs.storage_blobs_storage_container_id
+}
+
+output "storage_blobs_type" {
+  description = "Map of type values across all storage_blobs, keyed the same as var.storage_blobs"
+  value       = module.storage_blobs.storage_blobs_type
+}
+
+output "storage_blobs_url" {
+  description = "Map of url values across all storage_blobs, keyed the same as var.storage_blobs"
+  value       = module.storage_blobs.storage_blobs_url
 }
 
 # --- azurerm_storage_table_entity ---
