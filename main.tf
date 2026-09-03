@@ -160,108 +160,108 @@ locals {
 }
 
 module "storage_accounts" {
-  source           = "git::https://github.com/AeternaModules/azurerm_storage_account.git?ref=v5.0.0"
+  source           = "git::https://github.com/AeternaModules/azurerm_storage_account.git?ref=v5.0.1"
   storage_accounts = local.storage_accounts
 }
 
 module "storage_account_customer_managed_keys" {
-  source                                = "git::https://github.com/AeternaModules/azurerm_storage_account_customer_managed_key.git?ref=v5.0.0"
+  source                                = "git::https://github.com/AeternaModules/azurerm_storage_account_customer_managed_key.git?ref=v5.0.1"
   storage_account_customer_managed_keys = local.storage_account_customer_managed_keys
   depends_on                            = [module.storage_accounts]
 }
 
 module "storage_account_local_users" {
-  source                      = "git::https://github.com/AeternaModules/azurerm_storage_account_local_user.git?ref=v5.0.0"
+  source                      = "git::https://github.com/AeternaModules/azurerm_storage_account_local_user.git?ref=v5.0.1"
   storage_account_local_users = local.storage_account_local_users
   depends_on                  = [module.storage_accounts]
 }
 
 module "storage_account_network_rules" {
-  source                        = "git::https://github.com/AeternaModules/azurerm_storage_account_network_rules.git?ref=v5.0.0"
+  source                        = "git::https://github.com/AeternaModules/azurerm_storage_account_network_rules.git?ref=v5.0.1"
   storage_account_network_rules = local.storage_account_network_rules
   depends_on                    = [module.storage_accounts]
 }
 
 module "storage_account_queue_properties" {
-  source                           = "git::https://github.com/AeternaModules/azurerm_storage_account_queue_properties.git?ref=v5.0.0"
+  source                           = "git::https://github.com/AeternaModules/azurerm_storage_account_queue_properties.git?ref=v5.0.1"
   storage_account_queue_properties = local.storage_account_queue_properties
   depends_on                       = [module.storage_accounts]
 }
 
 module "storage_account_static_websites" {
-  source                          = "git::https://github.com/AeternaModules/azurerm_storage_account_static_website.git?ref=v5.0.0"
+  source                          = "git::https://github.com/AeternaModules/azurerm_storage_account_static_website.git?ref=v5.0.1"
   storage_account_static_websites = local.storage_account_static_websites
   depends_on                      = [module.storage_accounts]
 }
 
 module "storage_account_table_properties" {
-  source                           = "git::https://github.com/AeternaModules/azurerm_storage_account_table_properties.git?ref=v5.0.0"
+  source                           = "git::https://github.com/AeternaModules/azurerm_storage_account_table_properties.git?ref=v5.0.1"
   storage_account_table_properties = local.storage_account_table_properties
   depends_on                       = [module.storage_accounts]
 }
 
 module "storage_blob_inventory_policies" {
-  source                          = "git::https://github.com/AeternaModules/azurerm_storage_blob_inventory_policy.git?ref=v5.0.0"
+  source                          = "git::https://github.com/AeternaModules/azurerm_storage_blob_inventory_policy.git?ref=v5.0.1"
   storage_blob_inventory_policies = local.storage_blob_inventory_policies
   depends_on                      = [module.storage_accounts]
 }
 
 module "storage_containers" {
-  source             = "git::https://github.com/AeternaModules/azurerm_storage_container.git?ref=v5.0.0"
+  source             = "git::https://github.com/AeternaModules/azurerm_storage_container.git?ref=v5.0.1"
   storage_containers = local.storage_containers
   depends_on         = [module.storage_accounts]
 }
 
 module "storage_data_lake_gen2_filesystems" {
-  source                             = "git::https://github.com/AeternaModules/azurerm_storage_data_lake_gen2_filesystem.git?ref=v5.0.0"
+  source                             = "git::https://github.com/AeternaModules/azurerm_storage_data_lake_gen2_filesystem.git?ref=v5.0.1"
   storage_data_lake_gen2_filesystems = local.storage_data_lake_gen2_filesystems
   depends_on                         = [module.storage_accounts]
 }
 
 module "storage_data_lake_gen2_paths" {
-  source                       = "git::https://github.com/AeternaModules/azurerm_storage_data_lake_gen2_path.git?ref=v5.0.0"
+  source                       = "git::https://github.com/AeternaModules/azurerm_storage_data_lake_gen2_path.git?ref=v5.0.1"
   storage_data_lake_gen2_paths = local.storage_data_lake_gen2_paths
   depends_on                   = [module.storage_accounts]
 }
 
 module "storage_encryption_scopes" {
-  source                    = "git::https://github.com/AeternaModules/azurerm_storage_encryption_scope.git?ref=v5.0.0"
+  source                    = "git::https://github.com/AeternaModules/azurerm_storage_encryption_scope.git?ref=v5.0.1"
   storage_encryption_scopes = local.storage_encryption_scopes
   depends_on                = [module.storage_accounts]
 }
 
 module "storage_management_policies" {
-  source                      = "git::https://github.com/AeternaModules/azurerm_storage_management_policy.git?ref=v5.0.0"
+  source                      = "git::https://github.com/AeternaModules/azurerm_storage_management_policy.git?ref=v5.0.1"
   storage_management_policies = local.storage_management_policies
   depends_on                  = [module.storage_accounts]
 }
 
 module "storage_queues" {
-  source         = "git::https://github.com/AeternaModules/azurerm_storage_queue.git?ref=v5.0.0"
+  source         = "git::https://github.com/AeternaModules/azurerm_storage_queue.git?ref=v5.0.1"
   storage_queues = local.storage_queues
   depends_on     = [module.storage_accounts]
 }
 
 module "storage_shares" {
-  source         = "git::https://github.com/AeternaModules/azurerm_storage_share.git?ref=v5.0.0"
+  source         = "git::https://github.com/AeternaModules/azurerm_storage_share.git?ref=v5.0.1"
   storage_shares = local.storage_shares
   depends_on     = [module.storage_accounts]
 }
 
 module "storage_tables" {
-  source         = "git::https://github.com/AeternaModules/azurerm_storage_table.git?ref=v5.0.0"
+  source         = "git::https://github.com/AeternaModules/azurerm_storage_table.git?ref=v5.0.1"
   storage_tables = local.storage_tables
   depends_on     = [module.storage_accounts]
 }
 
 module "storage_blobs" {
-  source        = "git::https://github.com/AeternaModules/azurerm_storage_blob.git?ref=v5.0.0"
+  source        = "git::https://github.com/AeternaModules/azurerm_storage_blob.git?ref=v5.0.1"
   storage_blobs = local.storage_blobs
   depends_on    = [module.storage_containers]
 }
 
 module "storage_table_entities" {
-  source                 = "git::https://github.com/AeternaModules/azurerm_storage_table_entity.git?ref=v5.0.0"
+  source                 = "git::https://github.com/AeternaModules/azurerm_storage_table_entity.git?ref=v5.0.1"
   storage_table_entities = local.storage_table_entities
   depends_on             = [module.storage_tables]
 }
